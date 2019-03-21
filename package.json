@@ -1,0 +1,8 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "simple realtime chat",
+  "main": "index.js",
+  "author": "abdelhalim bouguedra",
+  "license": "MIT"
+}
