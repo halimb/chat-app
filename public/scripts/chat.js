@@ -1,6 +1,7 @@
 $(function() {
     var currentUser;
-    var socket = io.connect('https://chat--socketio.herokuapp.com')
+    var app = $('.app')
+    var socket = io.connect(app.data('io-server'))
     var sideBar = $('.sidebar')
     var messageInput = $('input[name="message"]')
     var messagesContainer = $('.messages-container')
