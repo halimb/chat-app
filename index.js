@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-server = app.listen(3000)
+server = app.listen(process.env.PORT || 80)
 
 //------------------------------------
 
