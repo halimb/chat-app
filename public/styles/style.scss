@@ -41,6 +41,7 @@ $background: $primary-darker;
 body {
     font-family: 'Quicksand';
     background: $background;
+    overflow: hidden;
 }
 
 .app {
@@ -199,3 +200,29 @@ input {
     font-style: italic;
     font-size: 13px;
 }
+
+.watermark {
+    a, a:visited, a:hover, a:active {
+        text-decoration: none;
+        color: inherit;
+    }
+    & > * {
+        margin: auto 5px;
+    }
+    i {
+        font-size: 20px;
+    }
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    color: white;
+    align-items: center;
+    @media (max-width: 768px)  {
+        bottom: 0;
+        left: 0;
+        transform-origin: top left;
+        transform: rotate(90deg) translate(-190px, -50px);
+    }
+}
+

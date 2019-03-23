@@ -61,6 +61,7 @@
 body {
   font-family: "Quicksand";
   background: #17252A;
+  overflow: hidden;
 }
 
 .app {
@@ -221,6 +222,33 @@ input {
   padding: 3px;
   font-style: italic;
   font-size: 13px;
+}
+
+.watermark {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  color: white;
+  align-items: center;
+}
+.watermark a, .watermark a:visited, .watermark a:hover, .watermark a:active {
+  text-decoration: none;
+  color: inherit;
+}
+.watermark > * {
+  margin: auto 5px;
+}
+.watermark i {
+  font-size: 20px;
+}
+@media (max-width: 768px) {
+  .watermark {
+    bottom: 0;
+    left: 0;
+    transform-origin: top left;
+    transform: rotate(90deg) translate(-190px, -50px);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
