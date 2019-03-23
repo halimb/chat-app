@@ -15,7 +15,7 @@ $(function() {
     var typingTimeout = 0;
 
     nameInput.on('change', (e) => {
-        currentUser = {name: nameInput.val(), color: getRandColor()}
+        currentUser = {name: escape(nameInput.val()), color: getRandColor()}
         socket.emit('new_user', currentUser)
         splashScreen.hide()
     })
@@ -63,7 +63,7 @@ $(function() {
     function submitMessage(e) {
         socket.emit('new_message', {
             user: currentUser, 
-            text: messageInput.val(), 
+            text: escape(messageInput.val()), 
             timestamp: new Date().getTime()
         })
         messageInput.val('')
@@ -78,7 +78,7 @@ $(function() {
     }
 
     function getUserInitials(user) {
-        let nameParts = user.name.split(/\s/)
+        let nameParts = getText(user.name).split(/\s/)
         return nameParts.length > 1 ? 
             nameParts[0][0] + nameParts[1][0] 
             : nameParts[0].slice(0, 2)
@@ -96,7 +96,7 @@ $(function() {
         return $(
             `<div class="user-list-item">
                 ${getUserAvatar(user)}
-                <span class="name">${user.name}</span>
+                <span class="name">${getText(user.name)}</span>
             </div>`
         ).prop('outerHTML')
     }
@@ -112,7 +112,7 @@ $(function() {
             `<div class="message-item">
                 <div class="message-wrapper" style="background: ${msg.user.color + '10'}">
                     ${getUserAvatar(msg.user)}
-                    <span class="text">${msg.text}</span>
+                    <span class="text">${getText(msg.text)}</span>
                 </div>
                 <span class="message-time">${formattedTime}</span>
             </div>`
@@ -127,12 +127,16 @@ $(function() {
                 return
             }
             
-            let message = ` ${data.user.name} is ${data.isTyping ? 'typing...' : 'erasing...'}`
+            let message = ` ${getText(data.user.name)} is ${data.isTyping ? 'typing...' : 'erasing...'}`
             typingStatus.append($(
                 `<i class="${data.isTyping ? 'lni-pencil' : 'lni-eraser'}"></i>
                 <span>${message}</span>`
             ))
             typingStatus.show('fade')
         })
+    }
+
+    function getText(raw) {
+        return $('<b>'+unescape(raw)+'</b>').text()
     }
 })
