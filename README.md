@@ -1,3 +1,7 @@
 ## Socket.io Chat application
 
-https://chat--socketio.herokuapp.com/
+Instant messaging app, using [Socket.io](https://socket.io/) (with Express.js and jQuery)
+
+![gif preview](./chat-app.gif)
+
+**Live preview** [https://chat--socketio.herokuapp.com/](https://chat--socketio.herokuapp.com/)
